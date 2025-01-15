@@ -1,0 +1,15 @@
+name: "CI/CD Pipeline"
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: "GHA Testing..."
+        run: |
+          echo "Ahmed is testing GHA"
+          # Add actual installation commands here if needed
