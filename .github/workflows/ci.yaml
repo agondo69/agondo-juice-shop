@@ -8,8 +8,11 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
-    steps:    
-      - name: "GHA Testing..."
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+
+      - name: "GHA testing...."
         run: |
           echo "Ahmed is testing GHA"
           # Add actual installation commands here if needed
