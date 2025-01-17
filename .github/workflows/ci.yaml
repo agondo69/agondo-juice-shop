@@ -13,7 +13,5 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v3
 
-      - name: "GHA testing...."
-        run: |
-          echo "Ahmed is testing GHA"
-          # Add actual installation commands here if needed
+      - name: "Build Docker image"
+        run: docker build -t juice-shop:latest .  
