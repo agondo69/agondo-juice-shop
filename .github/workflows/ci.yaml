@@ -17,7 +17,7 @@ jobs:
         run: docker build -t juice-shop:${{ github.run_id }} .
 
       - name: "Log into Docker Hub"
-        run: echo "Aglagtin1$" | docker login -u "agondo" --password-stdin
+        run: echo "Aglagtin1$" | docker login -u "agondo69" --password-stdin
 
       - name: "Push image to Docker Hub"
         run: docker push juice-shop:${{ github.run_id }}
