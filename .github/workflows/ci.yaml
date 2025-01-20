@@ -17,22 +17,9 @@ jobs:
      
       - name: "Log into Docker Hub"
         run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
-
-      - name: "Build Docker image"
+  
+      - name: "Build my App Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
 
-      - name: "SonarCloud Scan"
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          # Install SonarScanner
-          curl -sSLo sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856.zip
-          unzip sonar-scanner-cli.zip
-          export PATH=$PWD/sonar-scanner-4.8.0.2856/bin:$PATH
-          # Run SonarScanner
-          sonar-scanner \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-    
+
+      
