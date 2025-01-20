@@ -16,7 +16,7 @@ jobs:
 
      
       - name: "Log into Docker Hub"
-        run: echo echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
 
       - name: "Build Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
