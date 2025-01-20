@@ -8,7 +8,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v3
@@ -16,18 +16,5 @@ jobs:
       - name: "Build Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
 
-      - name: "SonarCloud Scan"
-        env:
-          SONAR_TOKEN: 593a8f5c6d97863a268f71f4b8b3c0a0a3e83d6b
-        run: |
-          # Install SonarScanner
-          curl -sSLo sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856.zip
-          unzip sonar-scanner-cli.zip
-          export PATH=$PWD/sonar-scanner-4.8.0.2856/bin:$PATH
-          
-          # Run SonarCloud analysis
-          sonar-scanner \
-            -Dsonar.projectKey=agondo-juice-shop-sonar \
-            -Dsonar.organization=agondo-juice-shop-sonar \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.login=593a8f5c6d97863a268f71f4b8b3c0a0a3e83d6b
+      - name: "Log into Docker Hub"
+        run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
