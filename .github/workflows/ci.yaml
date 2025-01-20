@@ -13,5 +13,21 @@ jobs:
       - name: "Checkout code"
         uses: actions/checkout@v3
 
+      - name: "SonarCloud Scan"
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          # Install SonarScanner
+          curl -sSLo sonar-scanner-cli.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856.zip
+          unzip sonar-scanner-cli.zip
+          export PATH=$PWD/sonar-scanner-4.8.0.2856/bin:$PATH
+          
+          # Run SonarCloud analysis
+          sonar-scanner \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+
       - name: "Build Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
