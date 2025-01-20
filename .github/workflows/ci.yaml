@@ -21,6 +21,4 @@ jobs:
       - name: "Build Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
 
-      - name: "Push image to Docker Hub"
-        run: docker push juice-shop:${{ github.run_id }}
-
+     
