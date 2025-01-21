@@ -28,6 +28,11 @@ jobs:
       - name: "Scan Docker image with Docker Scout"
         run: docker scout cves juice-shop:${{ github.run_id }}
 
+      - name: "Verify SonarCloud Project Configuration"
+        run: |
+          curl -u ${{ secrets.SONAR_TOKEN }}: \
+          "https://sonarcloud.io/api/projects/search?projects=${{ secrets.SONAR_PROJECT_KEY }}"
+
       - name: "SonarCloud Scan"
         uses: SonarSource/sonarqube-scan-action@v4.2.1
         env:
