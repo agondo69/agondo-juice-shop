@@ -34,10 +34,10 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=agondo-juice-shop-sonar \
-            -Dsonar.organization=agondo-juice-shop-sonar \
-            -Dsonar.host.url=https://sonarcloud.io \
-            -Dsonar.branch.name=master \
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORG }}
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.branch.name=master
             -X
 
 
