@@ -34,14 +34,11 @@ jobs:
       - name: "Scan Docker image with Docker Scout"
         run: docker scout cves juice-shop:${{ github.run_id }}
 
-      # Step 6: Verify SonarCloud project configuration
+      # Step 6: Verify SonarCloud Project Configuration
       - name: "Verify SonarCloud Project Configuration"
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         run: |
-          curl -u "${SONAR_TOKEN}:" \
-          "https://sonarcloud.io/api/projects/search?projects=${SONAR_PROJECT_KEY}"
+          curl -u ${{ secrets.SONAR_TOKEN }}: \
+          "https://sonarcloud.io/api/projects/search?projects=${{ secrets.SONAR_PROJECT_KEY }}"
 
       # Step 7: Run a SonarCloud scan for code analysis
       - name: "SonarCloud Scan"
@@ -55,3 +52,8 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.branch.name=master
             -X
+            -Dsonar.projectBaseDir=.
+            -Dsonar.sources=.
+            -Dsonar.tests=.
+            -Dsonar.test.inclusions=**/*.spec.ts
+            -Dsonar.typescript.lcov.reportPaths=coverage/lcov.info
