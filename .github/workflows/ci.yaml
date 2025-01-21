@@ -21,5 +21,7 @@ jobs:
       - name: "Build agondo App Docker image"
         run: docker build -t juice-shop:${{ github.run_id }} .
 
+      - name: "Scan Docker image with Docker Scout"
+        run: docker scout cves juice-shop:${{ github.run_id }}
 
-      
+
