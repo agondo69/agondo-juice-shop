@@ -41,5 +41,6 @@ jobs:
           "https://sonarcloud.io/api/projects/search?projects=${{ secrets.SONAR_PROJECT_KEY }}"
 
       # Step 7: Run a SonarCloud scan for code analysis
-      - name: "SonarCloud Scan"
+    
+
        
