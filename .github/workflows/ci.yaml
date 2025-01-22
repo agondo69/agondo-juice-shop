@@ -35,6 +35,13 @@ jobs:
         run: docker scout cves juice-shop:${{ github.run_id }}
 
       # Step 6: Verify SonarCloud Project Configuration
-     
+    
+      - name: "Verify SonarCloud Project Configuration"
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      run: |
+        curl -u "${SONAR_TOKEN}:" \
+        "https://sonarcloud.io/api/projects/search?projects=${SONAR_PROJECT_KEY}"
 
        
