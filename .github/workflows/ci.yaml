@@ -46,13 +46,13 @@ jobs:
 
          # Step 7: Run a SonarCloud scan for code analysis
       - name: "SonarCloud Scan"
-      uses: SonarSource/sonarqube-scan-action@v4.2.1
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      with:
-        args: >
-          -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-          -Dsonar.organization=${{ secrets.SONAR_ORG }}
-          -Dsonar.host.url=https://sonarcloud.io
-          -Dsonar.branch.name=master
-          -X
+        uses: SonarSource/sonarqube-scan-action@v4.2.1
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
+            -Dsonar.organization=${{ secrets.SONAR_ORG }}
+            -Dsonar.host.url=https://sonarcloud.io
+            -Dsonar.branch.name=master
+            -X
