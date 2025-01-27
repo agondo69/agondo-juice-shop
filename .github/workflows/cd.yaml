@@ -1,9 +1,9 @@
-name: "20 CD Pipeline"
+name: "CI Pipeline"
 on:
   workflow_dispatch:
     inputs:
       ci_run_id:
-        description: "Run ID of the CI pipeline run to reference the Docker image and Terraform artifacts."
+        description: "We'll run ID of the CI pipeline to call the Docker image and Terraform artifacts."
         required: true
 
 jobs:
